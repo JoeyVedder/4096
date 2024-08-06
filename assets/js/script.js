@@ -8,25 +8,58 @@ const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
 const previousAttemptDisplay = document.getElementById('previous-attempt');
 
-// Update display of scores
+function showModal(message) {
+    const modal = document.getElementById('modal');
+    const modalText = document.getElementById('modal-text');
+    const closeBtn = document.getElementById('close-btn');
+
+    modalText.textContent = message;
+    modal.style.display = 'block';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+        initGame();
+    };
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            initGame();
+        }
+    };
+}
+
 function updateScoreDisplay() {
     scoreDisplay.textContent = `Score: ${score}`;
     highScoreDisplay.textContent = `High Score: ${highScore}`;
     previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
 }
 
-// Save scores to local storage
+function checkGameOver() {
+    for (let r = 0; r < SIZE; r++) {
+        for (let c = 0; c < SIZE; c++) {
+            if (board[r][c] === 0) return false;
+            if (r < SIZE - 1 && board[r][c] === board[r + 1][c]) return false;
+            if (c < SIZE - 1 && board[r][c] === board[r][c + 1]) return false;
+        }
+    }
+    return true;
+}
+
 function saveScores() {
     localStorage.setItem('4096-score', score);
     localStorage.setItem('4096-high-score', highScore);
     localStorage.setItem('4096-previous-attempt', previousAttempt);
 }
 
-function createTile(value) {
+function createTile(value, row, col) {
     const tile = document.createElement('div');
     tile.className = 'tile';
     tile.textContent = value || '';
     tile.style.backgroundColor = getTileColor(value);
+    tile.style.transform = `translate(${col * 90}px, ${row * 90}px)`;
+    tile.dataset.row = row;
+    tile.dataset.col = col;
     return tile;
 }
 
@@ -43,17 +76,41 @@ function getTileColor(value) {
         case 512: return '#edc850';
         case 1024: return '#edc53f';
         case 2048: return '#edc22e';
+        case 4096: return '#3c3a32';
         default: return '#cdc1b4';
     }
 }
 
 function renderBoard() {
-    gameBoard.innerHTML = '';
-    board.forEach(row => {
-        row.forEach(cell => {
-            gameBoard.appendChild(createTile(cell));
+    const existingTiles = Array.from(gameBoard.getElementsByClassName('tile'));
+    const tilesToRemove = [];
+    const tilesToAdd = [];
+
+    board.forEach((row, r) => {
+        row.forEach((cell, c) => {
+            const existingTile = existingTiles.find(tile => tile.dataset.row == r && tile.dataset.col == c);
+            if (cell !== 0) {
+                if (existingTile) {
+                    if (parseInt(existingTile.textContent) !== cell) {
+                        existingTile.textContent = cell;
+                        existingTile.style.backgroundColor = getTileColor(cell);
+                    }
+                    existingTile.style.transform = `translate(${c * 90}px, ${r * 90}px)`;
+                } else {
+                    tilesToAdd.push(createTile(cell, r, c));
+                }
+            } else if (existingTile) {
+                tilesToRemove.push(existingTile);
+            }
         });
     });
+
+    tilesToAdd.forEach(tile => gameBoard.appendChild(tile));
+    tilesToRemove.forEach(tile => {
+        tile.style.opacity = '0';
+        tile.addEventListener('transitionend', () => tile.remove());
+    });
+
     updateScoreDisplay();
     saveScores();
 }
@@ -68,9 +125,15 @@ function addRandomTile() {
 
     if (emptyCells.length === 0) return;
     const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    board[r][c] = Math.random() < 0.9 ? 2 : 4;
     
-
+    const randomValue = Math.random();
+    if (randomValue < 0.8) {
+        board[r][c] = Math.random() < 0.9 ? 2 : 4;
+    } else if (randomValue < 0.95) {
+        board[r][c] = 8;
+    } else {
+        board[r][c] = 16;
+    }
 }
 
 function moveLeft() {
@@ -81,6 +144,10 @@ function moveLeft() {
             if (newRow[i] === newRow[i + 1]) {
                 newRow[i] *= 2;
                 score += newRow[i];
+                if (newRow[i] === 4096) {
+                    endGame(true);
+                    return false;
+                }
                 newRow.splice(i + 1, 1);
                 newRow.push(0);
                 moved = true;
@@ -127,7 +194,7 @@ function handleMove(direction) {
     switch (direction) {
         case 'left': moved = moveLeft(); break;
         case 'right': moved = moveRight(); break;
-        case 'up': moved = moveUp(); break;
+        case 'up': moved = moveUp(); break; 
         case 'down': moved = moveDown(); break;
     }
     if (moved) {
@@ -145,10 +212,24 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+function endGame(won) {
+    if (score > highScore) highScore = score;
+    previousAttempt = score;
+    saveScores();
+    setTimeout(() => {
+        if (won) {
+            showModal(`Congratulations, you've beaten the game! Your high score is ${highScore}.`);
+        } else {
+            showModal('Game Over! No more valid moves.');
+        }
+    }, 100);
+}
+
 function initGame() {
     previousAttempt = score;
-    board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0)); // Reset board
-    score = 0; // Reset score
+    if (score > highScore) highScore = score;
+    board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
+    score = 0;
     addRandomTile();
     addRandomTile();
     renderBoard();
