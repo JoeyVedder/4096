@@ -8,14 +8,14 @@ const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
 const previousAttemptDisplay = document.getElementById('previous-attempt');
 
-// Update display of scores
+
 function updateScoreDisplay() {
     scoreDisplay.textContent = `Score: ${score}`;
     highScoreDisplay.textContent = `High Score: ${highScore}`;
     previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
 }
 
-// Save scores to local storage
+
 function saveScores() {
     localStorage.setItem('4096-score', score);
     localStorage.setItem('4096-high-score', highScore);
@@ -147,8 +147,8 @@ document.addEventListener('keydown', (e) => {
 
 function initGame() {
     previousAttempt = score;
-    board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0)); // Reset board
-    score = 0; // Reset score
+    board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0)); 
+    score = 0; 
     addRandomTile();
     addRandomTile();
     renderBoard();
