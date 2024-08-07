@@ -7,18 +7,14 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-.info {
-    font-size: 18px;
-    margin: 20px;
-    font-weight: bold;
-}
+
 .game-container {
     display: grid;
-    grid-template-columns: repeat(8, 80px);
-    grid-template-rows: repeat(8, 80px);
+    grid-template-columns: repeat(6, 80px);
+    grid-template-rows: repeat(6, 80px);
     color: black;
     gap: 10px;
-    margin: 100px;
+    margin: 150px;
 
 }
 
@@ -31,20 +27,34 @@ body {
     font-size: 24px;
     border-radius: 50px;
     box-shadow: 0 0 8px red;
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
 }
 
 .info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    color: white;
+    color: rgb(255, 255, 255);
     position: absolute; 
     left: 0; 
     top: 0; 
     margin: 100px;
     padding: 50px;
-
+    font-size: 18px;
+    margin: 20px;
+    font-weight: bold;
 }
+
+#previous-attempt {
+    
+    font-size:200%;
+}
+
+#high-score {
+    font-size:200%;
+}
+
+
 
 #score {
     position: fixed;
@@ -57,4 +67,31 @@ body {
     z-index: 10;
     font-size: 40px; 
     margin: 0; 
+
 }
+.footer {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+.footer a:visited {
+    color:purple;
+}
+
+@media screen and (max-width: 768px) {
+    
+}
+  

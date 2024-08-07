@@ -1,4 +1,4 @@
-const SIZE = 8;
+const SIZE = 6;
 let board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
 let score = 0;
 let highScore = localStorage.getItem('4096-high-score') || 0;
@@ -7,6 +7,7 @@ const gameBoard = document.getElementById('game-board');
 const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
 const previousAttemptDisplay = document.getElementById('previous-attempt');
+
 
 
 function updateScoreDisplay() {
@@ -153,5 +154,14 @@ function initGame() {
     addRandomTile();
     renderBoard();
 }
+
+function triggerConfetti() {
+    confetti({
+        particleCount: 200,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+}
+
 
 initGame();
