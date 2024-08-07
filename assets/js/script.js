@@ -16,7 +16,6 @@ function updateScoreDisplay() {
     previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
 }
 
-
 function saveScores() {
     localStorage.setItem('4096-score', score);
     localStorage.setItem('4096-high-score', highScore);
