@@ -2,11 +2,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: black;
+    background-color: rgb(47, 45, 45);
     margin: 0;
     padding:0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
+}
+
+.modal-button {
+
 }
 
 .game-container {
@@ -16,7 +20,6 @@ body {
     color: black;
     gap: 10px;
     margin: 150px;
-
 }
 
 .tile {
@@ -93,4 +96,3 @@ body {
 @media screen and (max-width: 768px) {
     
 }
-  

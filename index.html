@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script defer src="./assets/js/script.js"></script>
     <title>4096</title>
-
 </head>
+
 <body>
+    <!-- Button to Open the Modal (Only enable for developing purposes) -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Open Modal
+    </button> -->
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Welcome to 4096</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body text-center">
+                    <h2>Click OK to play!</h2>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- score board -->
     <section class="info" id="info">
         <h1 id="high-score">High Score: 0</h1>
         <h2 id="score">Score</h2>
@@ -17,14 +47,21 @@
     </section>
     <div class="game-container" id="game-board"></div>
 </body>
+<!-- footer/information -->
 <footer class="footer">
     <p><strong>How to play:</strong></p>
     <p>Use your arrow keys to move the numbers and combine them until one of the tiles has a total of 4096!</p>
-    <p>Created by <a href="https://github.com/IanStocker02" target="_blank">Ian</a>, 
-        <a href="https://github.com/JoeyVedder" target="_blank">Joey</a>, 
-        <a href="https://github.com/jelliots2" target="_blank">Jacob</a>, and 
+    <p>Created by <a href="https://github.com/IanStocker02" target="_blank">Ian</a>,
+        <a href="https://github.com/JoeyVedder" target="_blank">Joey</a>,
+        <a href="https://github.com/jelliots2" target="_blank">Jacob</a>, and
         <a href="https://github.com/Plutarch1971" target="_blank">Matthew</a>! 🥳🥳🥳🥳
-     </p>
+    </p>
 </footer>
+<!-- Bootstrap script links -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Custom JS -->
+<script defer src="./assets/js/script.js"></script>
 </body>
 </html>
