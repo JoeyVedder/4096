@@ -136,14 +136,30 @@ function handleMove(direction) {
     }
 }
 
-document.addEventListener('keydown', (e) => {
-    switch (e.key) {
-        case 'ArrowUp': handleMove('up'); break;
-        case 'ArrowDown': handleMove('down'); break;
-        case 'ArrowLeft': handleMove('left'); break;
-        case 'ArrowRight': handleMove('right'); break;
+  document.addEventListener("keydown", (event) => {
+    switch (event.key) {
+      case "ArrowUp":
+      case "w":
+      case "W":
+        handleMove("up");
+        break;
+      case "ArrowDown":
+      case "s":
+      case "S":
+        handleMove("down");
+        break;
+      case "ArrowLeft":
+      case "a":
+      case "A":
+        handleMove("left");
+        break;
+      case "ArrowRight":
+      case "d":
+      case "D":
+        handleMove("right");
+        break;
     }
-});
+  });
 
 function initGame() {
     previousAttempt = score;
