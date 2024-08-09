@@ -1,3 +1,4 @@
+/* General styles */
 body {
     display: flex;
     flex-direction: column;
@@ -9,6 +10,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Custom button styling */
 .btn-custom {
     background-color: rgb(73, 170, 255);
     color: black;
@@ -22,15 +24,18 @@ body {
     background-color: rgb(0, 108, 191);
 }
 
+/* Game container styles */
 .game-container {
     display: grid;
     grid-template-columns: repeat(6, 80px);
     grid-template-rows: repeat(6, 80px);
     color: black;
     gap: 10px;
-    margin: 150px;
+    margin: 20px; /* Adjusted margin for better fit on mobile */
+    touch-action: none; /* Prevent default touch actions */
 }
 
+/* Tile styles */
 .tile {
     width: 80px;
     height: 80px;
@@ -41,10 +46,9 @@ body {
     border-radius: 50px;
     box-shadow: 0 0 8px red;
     transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
-    
 }
 
-
+/* Info section styles */
 .info {
     display: flex;
     flex-direction: column;
@@ -53,51 +57,20 @@ body {
     position: absolute; 
     left: 0; 
     top: 0; 
-    margin: 100px;
-    padding: 50px;
-    font-size: 18px;
     margin: 20px;
-    font-weight: bold;
-}
-.scoreboard {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: rgb(255, 255, 255);
-    position: absolute; 
-    left: 0; 
-    top: 0; 
-    margin: 100px;
-    padding: 100px;
+    padding: 20px;
     font-size: 18px;
-    margin: 65px;
     font-weight: bold;
-    border: 4px solid;
-    border-radius: 20px;
-    background-image: linear-gradient(orange, red);
 }
 
-#previous-attempt {
-    
-    font-size:200%;
+/* Score styles */
+#previous-attempt, #high-score {
+    font-size: 24px;
     margin: 0;
-    display: flex;
-    align-items: center; 
-    justify-content: flex-start; 
-    padding-left: 20px; 
-   
-    
-}
-
-#high-score {
-    font-size:200%;
-    margin: 0;
-    display: flex;
-    align-items: center; 
-    justify-content: flex-start; 
     padding-left: 20px; 
 }
 
+/* Score display */
 #score {
     position: fixed;
     top: 0;
@@ -109,15 +82,9 @@ body {
     z-index: 10;
     font-size: 40px; 
     margin: 0; 
-    
-
 }
 
-
-p.thicker {
-    font-weight: 900;
-}
-
+/* Footer styles */
 .footer {
     color: rgb(0, 0, 0);
     text-align: center;
@@ -140,8 +107,33 @@ p.thicker {
     color:purple;
 }
 
-
-
+/* Mobile responsiveness */
 @media screen and (max-width: 768px) {
-    
+    .game-container {
+        grid-template-columns: repeat(6, 60px);
+        grid-template-rows: repeat(6, 60px);
+        gap: 5px;
+        margin: 10px; /* Reduced margin for mobile */
+    }
+
+    .tile {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+
+    #score {
+        font-size: 30px;
+    }
+
+    .info {
+        margin: 10px;
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Prevent scrolling on swipe */
+.game-container {
+    touch-action: pan-x pan-y; /* Allow horizontal swiping only */
 }

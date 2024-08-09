@@ -13,18 +13,25 @@ const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
 const previousAttemptDisplay = document.getElementById('previous-attempt');
 
+// Swipe detection variables
+let touchStartX = 0;
+let touchStartY = 0;
+
+// Function to update the score display
 function updateScoreDisplay() {
     scoreDisplay.textContent = `Score: ${score}`;
     highScoreDisplay.textContent = `High Score: ${highScore}`;
     previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
 }
 
+// Function to save scores to localStorage
 function saveScores() {
     localStorage.setItem('4096-score', score);
     localStorage.setItem('4096-high-score', highScore);
     localStorage.setItem('4096-previous-attempt', previousAttempt);
 }
 
+// Function to create a tile element
 function createTile(value) {
     const tile = document.createElement('div');
     tile.className = 'tile';
@@ -33,6 +40,7 @@ function createTile(value) {
     return tile;
 }
 
+// Function to get the color of a tile based on its value
 function getTileColor(value) {
     switch (value) {
         case 2: return '#eee4da';
@@ -50,6 +58,7 @@ function getTileColor(value) {
     }
 }
 
+// Function to render the game board
 function renderBoard() {
     gameBoard.innerHTML = '';
     board.forEach(row => {
@@ -61,6 +70,7 @@ function renderBoard() {
     saveScores();
 }
 
+// Function to add a random tile to the board
 function addRandomTile() {
     const emptyCells = [];
     board.forEach((row, r) => {
@@ -71,11 +81,19 @@ function addRandomTile() {
 
     if (emptyCells.length === 0) return;
     const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    board[r][c] = Math.random() < 0.9 ? 2 : 4;
-
-
+    
+    // Randomly choose tile value: 2, 4, 8, or 16
+    const randomValue = Math.random();
+    if (randomValue < 0.8) {
+        board[r][c] = 2; // 80% chance
+    } else if (randomValue < 0.95) {
+        board[r][c] = 4; // 15% chance
+    } else {
+        board[r][c] = Math.random() < 0.5 ? 8 : 16; // 5% chance, equally for 8 or 16
+    }
 }
 
+// Function to move tiles left
 function moveLeft() {
     let moved = false;
     board.forEach((row, r) => {
@@ -96,6 +114,7 @@ function moveLeft() {
     return moved;
 }
 
+// Function to move tiles right
 function moveRight() {
     board.forEach((row, r) => {
         board[r] = row.reverse();
@@ -107,6 +126,7 @@ function moveRight() {
     return moved;
 }
 
+// Function to move tiles up
 function moveUp() {
     board = transpose(board);
     const moved = moveLeft();
@@ -114,6 +134,7 @@ function moveUp() {
     return moved;
 }
 
+// Function to move tiles down
 function moveDown() {
     board = transpose(board);
     const moved = moveRight();
@@ -121,10 +142,12 @@ function moveDown() {
     return moved;
 }
 
+// Function to transpose a matrix
 function transpose(matrix) {
     return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
 }
 
+// Function to handle move direction
 function handleMove(direction) {
     let moved = false;
     switch (direction) {
@@ -139,6 +162,7 @@ function handleMove(direction) {
     }
 }
 
+// Event listener for keyboard input
 document.addEventListener("keydown", (event) => {
     switch (event.key) {
         case "ArrowUp":
@@ -164,6 +188,39 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+// Event listener for touch start
+document.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+});
+
+// Event listener for touch end
+document.addEventListener('touchend', (event) => {
+    const touch = event.changedTouches[0];
+    const touchEndX = touch.clientX;
+    const touchEndY = touch.clientY;
+
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    // Determine swipe direction
+    if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0) {
+            handleMove('right');
+        } else {
+            handleMove('left');
+        }
+    } else {
+        if (dy > 0) {
+            handleMove('down');
+        } else {
+            handleMove('up');
+        }
+    }
+});
+
+// Function to initialize the game
 function initGame() {
     previousAttempt = score;
     board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
@@ -171,8 +228,11 @@ function initGame() {
     addRandomTile();
     addRandomTile();
     renderBoard();
+    // Lock the page from scrolling
+    document.body.style.overflow = 'hidden';
 }
 
+// Function to trigger confetti animation (requires confetti library)
 function triggerConfetti() {
     confetti({
         particleCount: 200,
@@ -181,5 +241,5 @@ function triggerConfetti() {
     });
 }
 
-
+// Initialize the game
 initGame();
