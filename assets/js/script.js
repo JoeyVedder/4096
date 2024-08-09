@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $("#myModal").modal('show');
 });
 
@@ -72,7 +72,7 @@ function addRandomTile() {
     if (emptyCells.length === 0) return;
     const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
     board[r][c] = Math.random() < 0.9 ? 2 : 4;
-    
+
 
 }
 
@@ -139,35 +139,35 @@ function handleMove(direction) {
     }
 }
 
-  document.addEventListener("keydown", (event) => {
+document.addEventListener("keydown", (event) => {
     switch (event.key) {
-      case "ArrowUp":
-      case "w":
-      case "W":
-        handleMove("up");
-        break;
-      case "ArrowDown":
-      case "s":
-      case "S":
-        handleMove("down");
-        break;
-      case "ArrowLeft":
-      case "a":
-      case "A":
-        handleMove("left");
-        break;
-      case "ArrowRight":
-      case "d":
-      case "D":
-        handleMove("right");
-        break;
+        case "ArrowUp":
+        case "w":
+        case "W":
+            handleMove("up");
+            break;
+        case "ArrowDown":
+        case "s":
+        case "S":
+            handleMove("down");
+            break;
+        case "ArrowLeft":
+        case "a":
+        case "A":
+            handleMove("left");
+            break;
+        case "ArrowRight":
+        case "d":
+        case "D":
+            handleMove("right");
+            break;
     }
-  });
+});
 
 function initGame() {
     previousAttempt = score;
-    board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0)); 
-    score = 0; 
+    board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
+    score = 0;
     addRandomTile();
     addRandomTile();
     renderBoard();
