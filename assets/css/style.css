@@ -9,8 +9,17 @@ body {
     overflow-x: hidden;
 }
 
-.modal-button {
+.btn-custom {
+    background-color: rgb(73, 170, 255);
+    color: black;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 5px 20px;
+}
 
+.btn-custom:hover {
+    background-color: rgb(0, 108, 191);
 }
 
 .game-container {
