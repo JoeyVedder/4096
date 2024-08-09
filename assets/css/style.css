@@ -2,11 +2,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: black;
+    background-color: rgb(47, 45, 45);
     margin: 0;
     padding:0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
+}
+
+.btn-custom {
+    background-color: rgb(73, 170, 255);
+    color: black;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 5px 20px;
+}
+
+.btn-custom:hover {
+    background-color: rgb(0, 108, 191);
 }
 
 .game-container {
@@ -16,7 +29,6 @@ body {
     color: black;
     gap: 10px;
     margin: 150px;
-
 }
 
 .tile {
@@ -93,4 +105,3 @@ body {
 @media screen and (max-width: 768px) {
     
 }
-  

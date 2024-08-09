@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    $("#myModal").modal('show');
+});
+
+//Game
 const SIZE = 6;
 let board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
 let score = 0;
@@ -7,8 +12,6 @@ const gameBoard = document.getElementById('game-board');
 const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
 const previousAttemptDisplay = document.getElementById('previous-attempt');
-
-
 
 function updateScoreDisplay() {
     scoreDisplay.textContent = `Score: ${score}`;
