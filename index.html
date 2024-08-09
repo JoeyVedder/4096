@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script defer src="./assets/js/script.js"></script>
     <title>4096</title>
-
 </head>
+
 <body>
+    <!-- Button to Open the Modal (Only enable for developing purposes) -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Open Modal
+    </button> -->
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title justify-content-center text-white" id="exampleModalLongTitle">Welcome to 4096</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body text-center">
+                    <h2>Click OK to play!</h2>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn-custom" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- score board -->
     <section class="info" id="info">
         <h1 id="score">Score</h2>
         </section>
@@ -17,15 +47,13 @@
         <h2 id="high-score">High Score: 0</h1>
         <h3 id="previous-attempt">Previous Attempt: 0</h3>
     </section>
-</body>
-<footer class="footer">
-    <p class="thicker">How to play:</p>
-    <p>Use your arrow keys to move the numbers and combine them until one of the tiles has a total of 4096!</p>
-    <p>Created by <a href="https://github.com/IanStocker02" target="_blank">Ian</a>, 
-        <a href="https://github.com/JoeyVedder" target="_blank">Joey</a>, 
-        <a href="https://github.com/jelliots2" target="_blank">Jacob</a>, and 
+row keys to move the numbers and combine them until one of the tiles has a total of 4096!</p>
+    <p>Created by <a href="https://github.com/IanStocker02" target="_blank">Ian</a>,
+        <a href="https://github.com/JoeyVedder" target="_blank">Joey</a>,
+        <a href="https://github.com/jelliots2" target="_blank">Jacob</a>, and
         <a href="https://github.com/Plutarch1971" target="_blank">Matthew</a>! 🥳🥳🥳🥳
-     </p>
+    </p>
+</div>
+</div>
 </footer>
-</body>
 </html>
