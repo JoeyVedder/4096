@@ -63,6 +63,19 @@ body {
     font-weight: bold;
 }
 
+.intro {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    position: relative; 
+    left: 0; 
+    top: 0; 
+    margin: 20px;
+    padding: 20px;
+    font-size: 16px;
+}
+
 /* Score styles */
 #previous-attempt, #high-score {
     font-size: 24px;
