@@ -4,49 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>4096</title>
 </head>
 
 <body>
-    <section class="info" id="info">
-        <h1 id="score">Score</h2>
-        </section>
-    <section class="game-container" id="game-board"></section>
-    <section class="scoreboard" id="scoreboard">
-        <h2 id="high-score">High Score: 0</h1>
-        <h3 id="previous-attempt">Previous Attempt: 0</h3>
-    </section>
     <!-- Button to Open the Modal (Only enable for developing purposes) -->
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
         Open Modal
     </button> -->
 
     <!-- The Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header bg-info">
-                    <h5 class="modal-title justify-content-center text-white" id="exampleModalLongTitle">Welcome to 4096</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Welcome to 4096</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <!-- Modal Body -->
-                <div class="modal-body text-center">
-                    <h2>Click OK to play!</h2>
+                <div class="modal-body">
+                    <h1></h1>
+                    <ul>Press OK to play</ul>
                 </div>
-                <!-- Modal Footer -->
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn-custom" data-dismiss="modal">OK</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- score board -->
+    <!-- Scoreboard -->
     <section>   
         <h2 id="score">Score</h2>
     </section>
@@ -55,31 +43,33 @@
         <h1 id="high-score">High Score: 0</h1>
         <h3 id="previous-attempt">Previous Attempt: 0</h3>
     </section>
-    <!-- small info box-->
+    <!-- Small info box-->
     <section class="intro">
         <p>Combine the tiles to get <strong>4096!</strong> Good Luck!</p>
     </section>
     <div class="game-container" id="game-board"></div>
+
     <!-- Bootstrap script links -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- Custom JS -->
-<script defer src="./assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <!-- Custom JS -->
+    <script defer src="./assets/js/script.js"></script>
 </body>
-<!-- footer/information -->
+
+<!-- Footer/Information -->
 <footer class="footer bg-secondary text-center text-lg-start">
     <div class="container p-4">
         <div class="text-center">
-    <p><strong>How to play:</strong></p>
-    <p>Use your arrow keys to move the numbers and combine them until one of the tiles has a total of 4096!</p>
->>>>>>> 9a5c065c77a419cf5d004908602161c9a68efc27
-    <p>Created by <a href="https://github.com/IanStocker02" target="_blank">Ian</a>,
-        <a href="https://github.com/JoeyVedder" target="_blank">Joey</a>,
-        <a href="https://github.com/jelliots2" target="_blank">Jacob</a>, and
-        <a href="https://github.com/Plutarch1971" target="_blank">Matthew</a>! 🥳🥳🥳🥳
-    </p>
-</div>
-</div>
+            <p><strong>How to play:</strong></p>
+            <p>Use your arrow keys to move the numbers and combine them until one of the tiles has a total of 4096!</p>
+            <p>Created by <a href="https://github.com/IanStocker02" target="_blank">Ian</a>,
+                <a href="https://github.com/JoeyVedder" target="_blank">Joey</a>,
+                <a href="https://github.com/jelliots2" target="_blank">Jacob</a>, and
+                <a href="https://github.com/Plutarch1971" target="_blank">Matthew</a>! 🥳🥳🥳🥳
+            </p>
+        </div>
+    </div>
 </footer>
+
 </html>
