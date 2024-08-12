@@ -1,14 +1,32 @@
-# Welcome to the Game Project 4096
+<h1 align="center">Welcome to the Puzzle Game Application</h1><br> 
+<h1 align="center">4096</h1>
 <font color="green">// TO DO  ..............................................</font>
 <br>
- What was your motivation?<br>
- Why did you build this project?<br>
- What problem does it solve?<br>
-What did you learn?<br>
-What makes your project stand out?<br>
-Your README might also describe some of the challenges you faced, as well as the feaures you plan to implement in the future. And if you project is deployed, make sure to include a link to the deployed application so people can see it in action.<br>
-To add screenshot, create assets/image folder and save the screenshot there and link it.<br>
-<font color="green">//.......................................................................................................</font>
+
+ ### Introduction<br>
+<font color="orange"> What was our motivation?</font><br>
+ The purpose of building the application is to implement what we learned as a student of Full Stack Application Developer<br>
+ <font color="orange">Why did we build this project?</font><br>
+ We built the 4096 game because it's an interesting interactive user friendly puzzle game that gave us a scope for using html, css and javascript.<br>
+ <font color="orange">What problem does it solve?</font><br>
+ The application handles the events of dragging and dropping of the tiles at user desired locations using arrow keys. It does the work of generating random numbers, rnadom tiles, does the calculation of merged tiles, displays current score, the highest achieved score for a player.<br>
+ <font color="green">//TO DO.......................................................................................................</font>
+
+<font color="orange">What did we learn?</font><br>
+We learned how to use different types of Event Handling invloling dragging and dropping, moving tiles with arrows. Creating random tiles with random colours, and assigning random values on each tile after every movement, was a good learnig activity. We learned  Math functions of calculation. We learnt how to store the tile values and user's score in the browser's local storage and again displaying them with display functions.
+
+<font color="orange">What makes our project stand out?</font><br>
+Our project stands out because of its cool appearance and functionality. It provides users a scope to face challenges and yet offers hours of relaxation and mental workout.<br>
+<font color="orange">Some of the challenges we faced during the application developmet</font><br>
+<font color="green">//TO DO .......</font>
+*   Applying CSS FrameWork?
+
+
+<font color="orange">Features we plan to implement in the future</font><br>
+
+
+<font color="green"> README might also describe some of the challenges you faced, as well as the feaures you plan to implement in the future. And if you project is deployed, make sure to include a link to the deployed application so people can see it in action.<br>
+To add screenshot, create assets/image folder and save the screenshot there and link it.</font><br>
 
 ### Description
 
@@ -71,26 +89,27 @@ Collaborators with GitHub Links:
   * Elliot Stocker: <br>
   * Joey Vedder: <br>
   * Matthew Mendez: <br>
-<font color="green">// TO DO  ..............................................</font>
+<font color="green">
+// TO DO  if we used third party assets, lint creator with links.........</font>
 
-  If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+  
+<font color="green">// TO DO  If you followed tutorials, include links to those here as well..</font>
 
-If you followed tutorials, include links to those here as well.
 
-Optional steps
-Add MIT to your project’s package description, if applicable (e.g., Node.js, Ruby, and Rust). This will ensure the license is displayed in package directories.
 
-Source
+<font color="green">Add MIT to your project’s package description, if applicable (e.g., Node.js, Ruby, and Rust). This will ensure the license is displayed in package directories.Source
 Who’s using this license?
 Babel
 .NET
 Rails
-About Terms of Service Help improve this page
+About Terms of Service Help improve this page</font>
+
+
 
 
 ### License
 MIT License<br>
-<font color="green">// TO DO  ; How to include license..............................................</font>
+<font color="green">// TO DO  ; How to include license or NOT............................................</font>
 
 ### Conclusion
 "4096" is a test of foresight, planning, and  strategy. It is not only a game, but provides endless hours of entertainment where players tries hard to reach the ultimate goal of creating a 4096 tile. "4096" offers a rewarding and challenging experience for all, whether one is a casual player looking for a quick puzzle fix or a dedicated gamer who aims for high scores.<br>
@@ -99,33 +118,32 @@ MIT License<br>
 
 
 ### Additional Instructions
-Provide instructions and examples for use. Include screenshots as needed.
-<font color="green">// TO DO  ..............................................</font>
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+Provide instructions and examples for use. Include screenshots as needed.<br>
+<font color="green">// TO DO ...To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
     ```md
     ![alt text](assets/images/screenshot.png)
     ```
-
+</font>
 
 ---
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+ <font color="green">// TO DO ...The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.</font>
 
 ## Badges
-<font color="green">// TO DO  ..............................................</font><br>
+<font color="green">// TO DO  ..............................................
 ![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
 
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
+Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.</font><br>
 
 
 
 ## How to Contribute
-<font color="green">// TO DO  ..............................................</font><br>
+<font color="green">// TO DO  ..............................................
 If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
+</font><br>
 ## Tests
-<font color="green">// TO DO  ..............................................</font><br>
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+<font color="green">// TO DO  ..............................................<br>
+Go the extra mile and write tests for your application. Then provide examples on how to run them here.</font>
 
 
