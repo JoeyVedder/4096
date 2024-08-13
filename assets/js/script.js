@@ -252,7 +252,7 @@ function checkForWinner() {
     let tiles = document.querySelectorAll('.tile'); // Or however you select your tiles
 
     tiles.forEach(function(tile) {
-        if (parseInt(tile.textContent) === 16) {
+        if (parseInt(tile.textContent) === 4096) {
            console.log('Winner detected, showing modal.');
             showWinnerModal();
         }
@@ -267,12 +267,18 @@ function showWinnerModal() {
 }
 
 
+
 // Function to show the Game Over modal
 function showGameOverModal() {
     var gameOverModal = new bootstrap.Modal(document.getElementById('gameOverModal'));
     gameOverModal.show();
-   
-    }
+
+    // Add an event listener to the "Try again" button
+    document.getElementById('try-again-btn').addEventListener('click', function() {
+        gameOverModal.hide(); // Close the modal
+        initGame(); // Reinitialize the game
+    });
+}
 
 // Function to check if the game is over (no moves left)
 function checkForLoser() {
