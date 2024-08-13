@@ -252,23 +252,21 @@ function checkForWinner() {
     let tiles = document.querySelectorAll('.tile'); // Or however you select your tiles
 
     tiles.forEach(function(tile) {
-        if (parseInt(tile.textContent) === 4096) {
+        if (parseInt(tile.textContent) === 16) {
            console.log('Winner detected, showing modal.');
             showWinnerModal();
         }
     });
 }
+
 function showWinnerModal() {
-    var winnerModal = new bootstrap.Modal(document.querySelector('#winnerModal'));
+    var winnerModal = new bootstrap.Modal(document.querySelector('#winnerModal'), {
+        backdrop: false
+    });
     winnerModal.show();
 }
-// Example: After a move in your game
-function makeMove() {
-    // Your existing game logic to handle moves
 
-    checkForWinner(); // Check if any tile has reached 4096
-}
-// Show Game Over Modal
+
 // Function to show the Game Over modal
 function showGameOverModal() {
     var gameOverModal = new bootstrap.Modal(document.getElementById('gameOverModal'));
