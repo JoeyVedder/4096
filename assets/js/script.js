@@ -160,7 +160,8 @@ function handleMove(direction) {
     if (moved) {
         addRandomTile();
         renderBoard();
-        checkForWinner();// Check if any tile has reached 16
+        checkForWinner();// Check if any tile has reached 4096
+        checkForLoser(); // Check if the player has lost
     }
 }
 
@@ -234,6 +235,7 @@ function initGame() {
     document.body.style.overflow = 'hidden';
 }
 
+
 // Function to trigger confetti animation (requires confetti library)
 function triggerConfetti() {
     confetti({
@@ -243,8 +245,6 @@ function triggerConfetti() {
     });
 }
 
-// Initialize the game
-//initGame();
 
 // Show Winnner Modal
 function checkForWinner() {
@@ -252,7 +252,7 @@ function checkForWinner() {
     let tiles = document.querySelectorAll('.tile'); // Or however you select your tiles
 
     tiles.forEach(function(tile) {
-        if (parseInt(tile.textContent) === 16) {
+        if (parseInt(tile.textContent) === 4096) {
            console.log('Winner detected, showing modal.');
             showWinnerModal();
         }
@@ -266,7 +266,40 @@ function showWinnerModal() {
 function makeMove() {
     // Your existing game logic to handle moves
 
-    checkForWinner(); // Check if any tile has reached 16
+    checkForWinner(); // Check if any tile has reached 4096
+}
+// Show Game Over Modal
+// Function to show the Game Over modal
+function showGameOverModal() {
+    var gameOverModal = new bootstrap.Modal(document.getElementById('gameOverModal'));
+    gameOverModal.show();
+   
+    }
+
+// Function to check if the game is over (no moves left)
+function checkForLoser() {
+    // Check if there are any empty tiles
+    let hasEmptyTile = board.some(row => row.includes(0));
+    
+    // Check if there are any possible moves
+    let hasMoves = false;
+    
+    // Check if any adjacent tiles can be combined (left/right, up/down)
+    for (let r = 0; r < SIZE; r++) {
+        for (let c = 0; c < SIZE; c++) {
+            if (r < SIZE - 1 && board[r][c] === board[r + 1][c]) {
+                hasMoves = true;
+            }
+            if (c < SIZE - 1 && board[r][c] === board[r][c + 1]) {
+                hasMoves = true;
+            }
+        }
+    }
+
+    if (!hasEmptyTile && !hasMoves) {
+        showGameOverModal(); // Show the game over modal
+    
+    }
 }
 // Initialize the game
 initGame();
