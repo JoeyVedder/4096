@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const shapeToggleButton = document.getElementById('toggle-shape');
-    const tiles = document.querySelectorAll('.tile');
+    const tiles = document.querySelectorAll('.game-container');
     let isCircle = false; // Initial state
 
     shapeToggleButton.addEventListener('click', () => {
@@ -112,7 +112,13 @@ function renderBoard() {
     gameBoard.innerHTML = '';
     board.forEach(row => {
         row.forEach(cell => {
-            gameBoard.appendChild(createTile(cell));
+            const tile = createTile(cell);
+            tile.classList.add('shrink-pop');
+            gameBoard.appendChild(tile);
+            // Remove the class after the animation is complete
+            tile.addEventListener('animationend', () => {
+                tile.classList.remove('shrink-pop');
+            }, { once: true });
         });
     });
     updateScoreDisplay();
