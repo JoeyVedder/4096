@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#myModal").modal('show');
 });
 
+
 //Game
 const SIZE = 6;
 let board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
@@ -159,6 +160,7 @@ function handleMove(direction) {
     if (moved) {
         addRandomTile();
         renderBoard();
+        checkForWinner();// Check if any tile has reached 16
     }
 }
 
@@ -241,5 +243,30 @@ function triggerConfetti() {
     });
 }
 
+// Initialize the game
+//initGame();
+
+// Show Winnner Modal
+function checkForWinner() {
+    // Assuming tiles are stored in an array or a grid
+    let tiles = document.querySelectorAll('.tile'); // Or however you select your tiles
+
+    tiles.forEach(function(tile) {
+        if (parseInt(tile.textContent) === 16) {
+           console.log('Winner detected, showing modal.');
+            showWinnerModal();
+        }
+    });
+}
+function showWinnerModal() {
+    var winnerModal = new bootstrap.Modal(document.querySelector('#winnerModal'));
+    winnerModal.show();
+}
+// Example: After a move in your game
+function makeMove() {
+    // Your existing game logic to handle moves
+
+    checkForWinner(); // Check if any tile has reached 16
+}
 // Initialize the game
 initGame();

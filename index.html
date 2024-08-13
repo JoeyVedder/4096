@@ -11,9 +11,9 @@
 
 <body>
     <!-- Button to Open the Modal (Only enable for developing purposes) -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
         Open Modal
-    </button> -->
+    </button>-->
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -33,7 +33,27 @@
             </div>
         </div>
     </div>
-
+    <!-- Congratulating Winner Modal-->
+   
+    <!-- Winner Modal -->
+<div class="modal fade" id="winnerModal" tabindex="-1" aria-labelledby="winnerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="winnerModalLabel">Winner</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Congratulations! You won the game.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Loser Modal -->
     <!-- Scoreboard -->
     <section>   
         <h2 id="score">Score</h2>
@@ -51,10 +71,22 @@
 
     <!-- Bootstrap script links -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- Custom JS -->
     <script defer src="./assets/js/script.js"></script>
+
+    <!--"Testing Congratulations You Win" Modal
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var myModal = new bootstrap.Modal(document.querySelector('.modal'));
+            myModal.show();
+        });
+      </script>
+    -->
+
+
 </body>
 
 <!-- Footer/Information -->
