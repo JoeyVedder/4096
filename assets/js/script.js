@@ -2,6 +2,55 @@ $(document).ready(function () {
     $("#myModal").modal('show');
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleButton = document.getElementById('toggle-theme');
+    const defaultTheme = 'theme-default'; 
+    let currentTheme = localStorage.getItem('theme') || defaultTheme;
+    
+    document.body.classList.add(currentTheme);
+
+    function updateButtonText() {
+        if (document.body.classList.contains('theme-default')) {
+            themeToggleButton.textContent = '💡'; 
+        } else {
+            themeToggleButton.textContent = '🕶️'; 
+        }
+    }
+
+    updateButtonText();
+
+    themeToggleButton.addEventListener('click', () => {
+        const newTheme = document.body.classList.contains('theme-default') ? 'theme-light' : 'theme-default';
+        document.body.classList.replace(currentTheme, newTheme);
+        localStorage.setItem('theme', newTheme);
+        currentTheme = newTheme; 
+        updateButtonText();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const shapeToggleButton = document.getElementById('toggle-shape');
+    const tiles = document.querySelectorAll('.tile');
+    let isCircle = false; // Initial state
+
+    shapeToggleButton.addEventListener('click', () => {
+        tiles.forEach(tile => {
+            if (isCircle) {
+                tile.classList.remove('circle');
+                tile.classList.add('square');
+                shapeToggleButton.textContent = '🔲'; // Square icon
+            } else {
+                tile.classList.remove('square');
+                tile.classList.add('circle');
+                shapeToggleButton.textContent = '🔵'; // Circle icon
+            }
+        });
+        isCircle = !isCircle; // Toggle the state
+    });
+});
+
+
 //Game
 const SIZE = 6;
 let board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));

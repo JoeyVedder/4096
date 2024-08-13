@@ -10,11 +10,15 @@
 </head>
 
 <body>
+    <!-- Theme toggle button-->
+    <div>
+        <button id="toggle-shape" type="button" class="btn btn-secondary" data-bs-toggle="tooltip"  title="toggle shape">🟫</button>
+        <button id="toggle-theme" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="toggle theme">💡</button>
+    </div>
     <!-- Button to Open the Modal (Only enable for developing purposes) -->
     <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Open Modal
+    Open Modal
     </button> -->
-
     <!-- The Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -28,7 +32,7 @@
                     <ul>Press OK to play</ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn-custom" data-bs-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>

@@ -1,23 +1,58 @@
 /* General styles */
+.circle {
+    --radius: 50px;
+}
+
+.square {
+    --radius: 5px;
+}
+
+.theme-default {
+    --background-color: rgb(47, 45, 45);
+    --text-color: white;
+    --button-bg: #007bff;
+    --button-text: black;
+    --tile-color: ;
+    --tile-shadow: red;
+}
+
+.theme-light {
+    --background-color: #dcdcdc;
+    --text-color: #000000;
+    --button-bg: #007bff;
+    --button-text: #ffffff;
+    --tile-color: ;
+    --tile-shadow: gray;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(47, 45, 45);
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     padding:0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Custom button styling */
 .btn-custom {
-    background-color: rgb(73, 170, 255);
-    color: black;
+    background-color: var(--button-bg);
+    color: var(--text-color);
     border-radius: 3px;
     box-shadow: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     padding: 5px 20px;
+    background-color 0.5s ease, color 0.5s ease;
 }
 
 .btn-custom:hover {
@@ -43,9 +78,10 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    border-radius: 50px;
-    box-shadow: 0 0 8px red;
-    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+    border-radius: var(--radius, 10px);
+    box-shadow: 0 0 8px var(--tile-shadow);
+    transition: border-radius 0.5s ease;
+    transition-property: transform 0.5s ease, background-color 0.3s ease, opacity 0.3s ease;
 }
 
 /* Info section styles */
@@ -53,7 +89,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
     position: relative; 
     left: 0; 
     top: 0; 
@@ -67,13 +103,28 @@ body {
     display: flex;
     text-align: center;
     flex-direction: column;
-    color: rgb(255, 255, 255);
+    color: var(--text-color)
     position: relative; 
     left: 0; 
     top: 0; 
     margin: 20px;
     padding: 20px;
     font-size: 16px;
+}
+
+#toggle-shape {
+    position: fixed;
+    top: 10px; 
+    right: 70px; 
+    z-index: 1000;
+}
+
+/* theme toggle button */
+#toggle-theme {
+    position: fixed;
+    top: 10px; 
+    right: 10px; 
+    z-index: 1000;
 }
 
 /* Score styles */
@@ -90,7 +141,7 @@ body {
     left: 0; 
     right: 0; 
     padding: 0px;
-    color: white; 
+    color: var(--text-color); 
     text-align: center; 
     z-index: 10;
     font-size: 40px; 
@@ -99,7 +150,7 @@ body {
 
 /* Footer styles */
 .footer {
-    color: rgb(0, 0, 0);
+    color: var(--text-color);
     text-align: center;
     padding: 10px;
     position: relative;
@@ -109,7 +160,7 @@ body {
 }
 
 .footer a {
-    color: rgb(0, 0, 0);
+    color: var(--text-color);
     text-decoration: none;
     margin: 0 5px;
 }
@@ -120,6 +171,7 @@ body {
 .footer a:visited {
     color:purple;
 }
+
 
 /* Mobile responsiveness */
 @media screen and (max-width: 768px) {
