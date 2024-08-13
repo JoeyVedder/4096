@@ -93,6 +93,29 @@ function addRandomTile() {
         board[r][c] = Math.random() < 0.5 ? 8 : 16; // 5% chance, equally for 8 or 16
     }
 }
+// Function to add a random tile with a value between 1 and 100 (game lost modal testing)
+//function addRandomTileWithValue() {
+//    const emptyCells = [];
+//    board.forEach((row, r) => {
+//        row.forEach((cell, c) => {
+//            if (cell === 0) emptyCells.push([r, c]);
+//        });
+//    });
+//
+//    if (emptyCells.length === 0) return;
+//    const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+//    
+//    // Randomly generate a value between 1 and 100
+//    const randomValue = Math.floor(Math.random() * 100) + 1;
+//    board[r][c] = randomValue;
+//    
+//    renderBoard();
+//}
+//
+// Event listener for the "Spawn Random Tile" button
+//document.getElementById('spawn-random-tile').addEventListener('click', () => {
+//    addRandomTileWithValue();
+//});
 
 // Function to move tiles left
 function moveLeft() {
