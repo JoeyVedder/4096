@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateButtonText() {
         if (document.body.classList.contains('theme-default')) {
-            themeToggleButton.textContent = '💡'; 
+            themeToggleButton.textContent = '☀️'; 
         } else {
-            themeToggleButton.textContent = '🕶️'; 
+            themeToggleButton.textContent = '🌑'; 
         }
     }
 

@@ -41,7 +41,7 @@ body {
 .modal-content {
     background-color: var(--background-color);
     color: var(--text-color);
-    background-color 0.5s ease, color 0.5s ease;
+    background-color: 0.5s ease, color 0.5s ease;
 }
 
 /* Custom button styling */
@@ -52,7 +52,7 @@ body {
     box-shadow: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     padding: 5px 20px;
-    background-color 0.5s ease, color 0.5s ease;
+    background-color: 0.5s ease, color 0.5s ease;
 }
 
 .btn-custom:hover {
@@ -103,7 +103,7 @@ body {
     display: flex;
     text-align: center;
     flex-direction: column;
-    color: var(--text-color)
+    color: var(--text-color);
     position: relative; 
     left: 0; 
     top: 0; 
@@ -174,7 +174,7 @@ body {
 
 
 /* Mobile responsiveness */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
     .game-container {
         grid-template-columns: repeat(6, 60px);
         grid-template-rows: repeat(6, 60px);
