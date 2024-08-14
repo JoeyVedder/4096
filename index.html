@@ -10,12 +10,20 @@
 </head>
 
 <body>
+
+    
+    
     <!-- Button to Open the Modal (Only enable for developing purposes) -->
     <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
         Open Modal
     </button>-->
-
+        <!-- Theme toggle button-->
+        <section>
+            <button id="toggle-shape" type="button" class="btn btn-secondary" data-bs-toggle="tooltip"  title="toggle shape">🟫</button>
+            <button id="toggle-theme" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="toggle theme">💡</button>
+        </section>
     <!-- The Modals--> 
+     
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -73,21 +81,14 @@
     </div>
     
     <!-- Scoreboard -->
-
-     <!-- Button to spawn random tiles -->
-<!--
-     <section class="text-center my-4">
-    <button id="spawn-random-tile" class="btn btn-warning">Spawn Random Tile</button>
-</section>
-
--->
     <section>   
         <h2 id="score">Score</h2>
     </section>
 
-    <section class="info" id="info">
+    
+    <section class="grid-container">
         <h1 id="high-score">High Score: 0</h1>
-        <h3 id="previous-attempt">Previous Attempt: 0</h3>
+        <h3 id="previous-score">Previous Score: 0</h3>
     </section>
     <!-- Small info box-->
     <section class="intro">
@@ -102,25 +103,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- Custom JS -->
     <script defer src="./assets/js/script.js"></script>
-
-    <!--"Testing Congratulations You Win" Modal
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var myModal = new bootstrap.Modal(document.querySelector('.modal'));
-            myModal.show();
-        });
-      </script>
-    -->
-
-
 </body>
 
 <!-- Footer/Information -->
-<footer class="footer bg-secondary text-center text-lg-start">
+<footer class="footer">
     <div class="container p-4">
         <div class="text-center">
-            <p><strong>How to play:</strong></p>
-            <p>Use your arrow keys to move the numbers and combine them until one of the tiles has a total of 4096!</p>
             <p>Created by <a href="https://github.com/IanStocker02" target="_blank">Ian</a>,
                 <a href="https://github.com/JoeyVedder" target="_blank">Joey</a>,
                 <a href="https://github.com/jelliots2" target="_blank">Jacob</a>, and

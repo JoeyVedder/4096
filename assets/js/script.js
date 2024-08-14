@@ -3,16 +3,64 @@ $(document).ready(function () {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleButton = document.getElementById('toggle-theme');
+    const defaultTheme = 'theme-default'; 
+    let currentTheme = localStorage.getItem('theme') || defaultTheme;
+    
+    document.body.classList.add(currentTheme);
+
+    function updateButtonText() {
+        if (document.body.classList.contains('theme-default')) {
+            themeToggleButton.textContent = '☀️'; 
+        } else {
+            themeToggleButton.textContent = '🌑'; 
+        }
+    }
+
+    updateButtonText();
+
+    themeToggleButton.addEventListener('click', () => {
+        const newTheme = document.body.classList.contains('theme-default') ? 'theme-light' : 'theme-default';
+        document.body.classList.replace(currentTheme, newTheme);
+        localStorage.setItem('theme', newTheme);
+        currentTheme = newTheme; 
+        updateButtonText();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const shapeToggleButton = document.getElementById('toggle-shape');
+    const tiles = document.querySelectorAll('.game-container');
+    let isCircle = false; // Initial state
+
+    shapeToggleButton.addEventListener('click', () => {
+        tiles.forEach(tile => {
+            if (isCircle) {
+                tile.classList.remove('circle');
+                tile.classList.add('square');
+                shapeToggleButton.textContent = '🔲'; // Square icon
+            } else {
+                tile.classList.remove('square');
+                tile.classList.add('circle');
+                shapeToggleButton.textContent = '🔵'; // Circle icon
+            }
+        });
+        isCircle = !isCircle; // Toggle the state
+    });
+});
+
+
 //Game
 const SIZE = 6;
 let board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
 let score = 0;
 let highScore = localStorage.getItem('4096-high-score') || 0;
-let previousAttempt = localStorage.getItem('4096-previous-attempt') || 0;
+let previousScore = localStorage.getItem('4096-previous-score') || 0;
 const gameBoard = document.getElementById('game-board');
 const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
-const previousAttemptDisplay = document.getElementById('previous-attempt');
+const previousScoreDisplay = document.getElementById('previous-score');
 
 // Swipe detection variables
 let touchStartX = 0;
@@ -22,14 +70,14 @@ let touchStartY = 0;
 function updateScoreDisplay() {
     scoreDisplay.textContent = `Score: ${score}`;
     highScoreDisplay.textContent = `High Score: ${highScore}`;
-    previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
+    previousScoreDisplay.textContent = `Previous Score: ${previousScore}`;
 }
 
 // Function to save scores to localStorage
 function saveScores() {
     localStorage.setItem('4096-score', score);
     localStorage.setItem('4096-high-score', highScore);
-    localStorage.setItem('4096-previous-attempt', previousAttempt);
+    localStorage.setItem('4096-previous-score', previousScore);
 }
 
 // Function to create a tile element
@@ -248,7 +296,7 @@ document.addEventListener('touchend', (event) => {
 
 // Function to initialize the game
 function initGame() {
-    previousAttempt = score;
+    previousScore = score;
     board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
     score = 0;
     addRandomTile();
@@ -275,7 +323,7 @@ function checkForWinner() {
     let tiles = document.querySelectorAll('.tile'); // Or however you select your tiles
 
     tiles.forEach(function(tile) {
-        if (parseInt(tile.textContent) === 4096) {
+        if (parseInt(tile.textContent) === 16) {
            console.log('Winner detected, showing modal.');
             showWinnerModal();
         }
