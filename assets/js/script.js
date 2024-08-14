@@ -2,65 +2,16 @@ $(document).ready(function () {
     $("#myModal").modal('show');
 });
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggleButton = document.getElementById('toggle-theme');
-    const defaultTheme = 'theme-default'; 
-    let currentTheme = localStorage.getItem('theme') || defaultTheme;
-    
-    document.body.classList.add(currentTheme);
-
-    function updateButtonText() {
-        if (document.body.classList.contains('theme-default')) {
-            themeToggleButton.textContent = '☀️'; 
-        } else {
-            themeToggleButton.textContent = '🌑'; 
-        }
-    }
-
-    updateButtonText();
-
-    themeToggleButton.addEventListener('click', () => {
-        const newTheme = document.body.classList.contains('theme-default') ? 'theme-light' : 'theme-default';
-        document.body.classList.replace(currentTheme, newTheme);
-        localStorage.setItem('theme', newTheme);
-        currentTheme = newTheme; 
-        updateButtonText();
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const shapeToggleButton = document.getElementById('toggle-shape');
-    const tiles = document.querySelectorAll('.game-container');
-    let isCircle = false; // Initial state
-
-    shapeToggleButton.addEventListener('click', () => {
-        tiles.forEach(tile => {
-            if (isCircle) {
-                tile.classList.remove('circle');
-                tile.classList.add('square');
-                shapeToggleButton.textContent = '🔲'; // Square icon
-            } else {
-                tile.classList.remove('square');
-                tile.classList.add('circle');
-                shapeToggleButton.textContent = '🔵'; // Circle icon
-            }
-        });
-        isCircle = !isCircle; // Toggle the state
-    });
-});
-
-
 //Game
 const SIZE = 6;
 let board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
 let score = 0;
 let highScore = localStorage.getItem('4096-high-score') || 0;
-let previousScore = localStorage.getItem('4096-previous-score') || 0;
+let previousAttempt = localStorage.getItem('4096-previous-attempt') || 0;
 const gameBoard = document.getElementById('game-board');
 const scoreDisplay = document.getElementById('score');
 const highScoreDisplay = document.getElementById('high-score');
-const previousScoreDisplay = document.getElementById('previous-score');
+const previousAttemptDisplay = document.getElementById('previous-attempt');
 
 // Swipe detection variables
 let touchStartX = 0;
@@ -70,14 +21,14 @@ let touchStartY = 0;
 function updateScoreDisplay() {
     scoreDisplay.textContent = `Score: ${score}`;
     highScoreDisplay.textContent = `High Score: ${highScore}`;
-    previousScoreDisplay.textContent = `Previous Score: ${previousScore}`;
+    previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
 }
 
 // Function to save scores to localStorage
 function saveScores() {
     localStorage.setItem('4096-score', score);
     localStorage.setItem('4096-high-score', highScore);
-    localStorage.setItem('4096-previous-score', previousScore);
+    localStorage.setItem('4096-previous-attempt', previousAttempt);
 }
 
 // Function to create a tile element
@@ -141,30 +92,30 @@ function addRandomTile() {
         board[r][c] = Math.random() < 0.5 ? 8 : 16; // 5% chance, equally for 8 or 16
     }
 }
-// Function to add a random tile with a value between 1 and 100 (game lost modal testing)
-//function addRandomTileWithValue() {
-//    const emptyCells = [];
-//    board.forEach((row, r) => {
-//        row.forEach((cell, c) => {
-//            if (cell === 0) emptyCells.push([r, c]);
-//        });
-//    });
-//
-//    if (emptyCells.length === 0) return;
-//    const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-//    
-//    // Randomly generate a value between 1 and 100
-//    const randomValue = Math.floor(Math.random() * 100) + 1;
-//    board[r][c] = randomValue;
-//    
-//    renderBoard();
-//}
-//
-// Event listener for the "Spawn Random Tile" button
-//document.getElementById('spawn-random-tile').addEventListener('click', () => {
-//    addRandomTileWithValue();
-//});
 
+function renderBoard() {
+    gameBoard.innerHTML = '';
+    board.forEach(row => {
+        row.forEach(cell => {
+            gameBoard.appendChild(createTile(cell));
+        });
+    });
+    updateScoreDisplay();
+    saveScores();
+}
+
+function addRandomTile() {
+    const emptyCells = [];
+    board.forEach((row, r) => {
+        row.forEach((cell, c) => {
+            if (cell === 0) emptyCells.push([r, c]);
+        });
+    });
+
+    if (emptyCells.length === 0) return;
+    const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    board[r][c] = Math.random() < 0.9 ? 2 : 4;
+}
 // Function to move tiles left
 function moveLeft() {
     let moved = false;
@@ -174,6 +125,10 @@ function moveLeft() {
             if (newRow[i] === newRow[i + 1]) {
                 newRow[i] *= 2;
                 score += newRow[i];
+                if (newRow[i] === 4096) {
+                    endGame();
+                    return false;
+                }
                 newRow.splice(i + 1, 1);
                 newRow.push(0);
                 moved = true;
@@ -231,8 +186,6 @@ function handleMove(direction) {
     if (moved) {
         addRandomTile();
         renderBoard();
-        checkForWinner();// Check if any tile has reached 4096
-        checkForLoser(); // Check if the player has lost
     }
 }
 
@@ -296,7 +249,7 @@ document.addEventListener('touchend', (event) => {
 
 // Function to initialize the game
 function initGame() {
-    previousScore = score;
+    previousAttempt = score;
     board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
     score = 0;
     addRandomTile();
@@ -306,7 +259,6 @@ function initGame() {
     document.body.style.overflow = 'hidden';
 }
 
-
 // Function to trigger confetti animation (requires confetti library)
 function triggerConfetti() {
     confetti({
@@ -315,66 +267,14 @@ function triggerConfetti() {
         origin: { y: 0.6 }
     });
 }
-
-
-// Show Winnner Modal
-function checkForWinner() {
-    // Assuming tiles are stored in an array or a grid
-    let tiles = document.querySelectorAll('.tile'); // Or however you select your tiles
-
-    tiles.forEach(function(tile) {
-        if (parseInt(tile.textContent) === 16) {
-           console.log('Winner detected, showing modal.');
-            showWinnerModal();
-        }
-    });
-}
-
-function showWinnerModal() {
-    var winnerModal = new bootstrap.Modal(document.querySelector('#winnerModal'), {
-        backdrop: false
-    });
-    winnerModal.show();
-}
-
-
-
-// Function to show the Game Over modal
-function showGameOverModal() {
-    var gameOverModal = new bootstrap.Modal(document.getElementById('gameOverModal'));
-    gameOverModal.show();
-
-    // Add an event listener to the "Try again" button
-    document.getElementById('try-again-btn').addEventListener('click', function() {
-        gameOverModal.hide(); // Close the modal
-        initGame(); // Reinitialize the game
-    });
-}
-
-// Function to check if the game is over (no moves left)
-function checkForLoser() {
-    // Check if there are any empty tiles
-    let hasEmptyTile = board.some(row => row.includes(0));
-    
-    // Check if there are any possible moves
-    let hasMoves = false;
-    
-    // Check if any adjacent tiles can be combined (left/right, up/down)
-    for (let r = 0; r < SIZE; r++) {
-        for (let c = 0; c < SIZE; c++) {
-            if (r < SIZE - 1 && board[r][c] === board[r + 1][c]) {
-                hasMoves = true;
-            }
-            if (c < SIZE - 1 && board[r][c] === board[r][c + 1]) {
-                hasMoves = true;
-            }
-        }
-    }
-
-    if (!hasEmptyTile && !hasMoves) {
-        showGameOverModal(); // Show the game over modal
-    
-    }
+function endGame() {
+    if (score > highScore) highScore = score;
+    previousAttempt = score;
+    saveScores();
+    setTimeout(() => {
+        alert(`Congratulations, you've beaten the game! Your high score is ${highScore}.`);
+        initGame();
+    }, 100);
 }
 // Initialize the game
 initGame();
