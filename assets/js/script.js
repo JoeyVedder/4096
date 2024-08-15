@@ -68,9 +68,23 @@ let touchStartY = 0;
 
 // Function to update the score display
 function updateScoreDisplay() {
-    scoreDisplay.textContent = `Score: ${score}`;
-    highScoreDisplay.textContent = `High Score: ${highScore}`;
-    previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
+    if (scoreDisplay) {
+        scoreDisplay.textContent = `Score: ${score}`;
+    } else {
+        console.error('Score display element not found');
+    }
+
+    if (highScoreDisplay) {
+        highScoreDisplay.textContent = `High Score: ${highScore}`;
+    } else {
+        console.error('High score display element not found');
+    }
+
+    if (previousAttemptDisplay) {
+        previousAttemptDisplay.textContent = `Previous Attempt: ${previousAttempt}`;
+    } else {
+        console.error('Previous attempt display element not found');
+    }
 }
 
 // Function to save scores to localStorage
@@ -214,9 +228,13 @@ function handleMove(direction) {
     if (moved) {
         addRandomTile();
         renderBoard();
+        if (checkForWinner()) {
+            triggerConfetti(); // Optional: Trigger confetti if there's a winner
+        } else if (checkForLoser()) {
+            // Game over logic here
+        }
     }
 }
-
 // Event listener for keyboard input
 document.addEventListener("keydown", (event) => {
     switch (event.key) {
@@ -242,6 +260,7 @@ document.addEventListener("keydown", (event) => {
             break;
     }
 });
+
 
 // Event listener for touch start
 document.addEventListener('touchstart', (event) => {
@@ -289,12 +308,111 @@ function initGame() {
 
 // Function to trigger confetti animation (requires confetti library)
 function triggerConfetti() {
-    confetti({
-        particleCount: 200,
-        spread: 70,
-        origin: { y: 0.6 }
+    const duration = 5 * 1000; // Duration of the confetti animation in milliseconds
+    const end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 5, // Number of confetti particles to generate per frame
+            angle: Math.random() * 360, // Random angle for confetti spread
+            spread: Math.random() * 60 + 20, // Random spread value for confetti
+            origin: {
+                x: Math.random(), // Random horizontal position
+                y: Math.random() - 0.2 // Random vertical position
+            }
+        });
+
+        // Continue to generate confetti frames until the end time is reached
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    })();
+}
+
+// Function to add a random value between 1 and 100 to a random empty tile (Game over modal testing)
+
+//function addRandomValueTileOnClick() {
+//    const addRandomValueButton = document.getElementById('add-random-value');
+//
+//    addRandomValueButton.addEventListener('click', () => {
+//        const emptyCells = [];
+//        
+        // Find all empty cells (cells with a value of 0)
+//        board.forEach((row, r) => {
+//           row.forEach((cell, c) => {
+//                if (cell === 0) emptyCells.push([r, c]);
+//            });
+//        });
+//
+        // If there are no empty cells, exit the function
+//        if (emptyCells.length === 0) return;
+//
+        // Choose a random empty cell
+//        const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+//
+        // Assign a random value between 1 and 100 to the chosen cell
+//        board[r][c] = Math.floor(Math.random() * 100) + 1;
+//
+//        // Re-render the board to display the new value
+//        renderBoard();
+//    });
+//}
+
+// Initialize the function
+//addRandomValueTileOnClick();
+
+function checkForWinner() {
+    for (let row of board) {
+        if (row.includes(4096)) {
+            showWinnerModal(); // Show winner modal if 4096 is found
+            return true;
+        }
+    }
+    return false;
+}
+
+function showWinnerModal() {
+    console.log('Showing winner modal');
+    var winnerModal = new bootstrap.Modal(document.querySelector('#winnerModal'), {
+        backdrop: false
+    });
+    winnerModal.show();
+}
+function checkForLoser() {
+    // Check if there are any empty cells
+    for (let row of board) {
+        if (row.includes(0)) {
+            return false;
+        }
+    }
+
+    // Check for possible moves horizontally and vertically
+    for (let r = 0; r < SIZE; r++) {
+        for (let c = 0; c < SIZE; c++) {
+            // Check right and down neighbors
+            if ((c < SIZE - 1 && board[r][c] === board[r][c + 1]) ||
+                (r < SIZE - 1 && board[r][c] === board[r + 1][c])) {
+                return false;
+            }
+        }
+    }
+
+    // No moves left and no empty cells, game over
+    showGameOverModal(); // Show game over modal
+    return true;
+}
+function showGameOverModal() {
+    console.log('Showing game over modal');
+    var gameOverModal = new bootstrap.Modal(document.getElementById('gameOverModal'));
+    gameOverModal.show();
+
+    // Add an event listener to the "Try again" button
+    document.getElementById('try-again-btn').addEventListener('click', function() {
+        gameOverModal.hide(); // Close the modal
+        initGame(); // Reinitialize the game
     });
 }
+
 
 // Initialize the game
 initGame();
