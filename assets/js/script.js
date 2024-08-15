@@ -296,7 +296,9 @@ document.addEventListener('touchend', (event) => {
 
 // Function to initialize the game
 function initGame() {
-    previousAttempt = score;
+    // Save previous score to local storage before initializing the new game
+    localStorage.setItem('4096-previous-attempt', previousAttempt);
+    // Initialize game state
     board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
     score = 0;
     addRandomTile();
@@ -329,37 +331,7 @@ function triggerConfetti() {
     })();
 }
 
-// Function to add a random value between 1 and 100 to a random empty tile (Game over modal testing)
 
-//function addRandomValueTileOnClick() {
-//    const addRandomValueButton = document.getElementById('add-random-value');
-
-//    addRandomValueButton.addEventListener('click', () => {
-//        const emptyCells = [];
-        
-       // Find all empty cells (cells with a value of 0)
-//        board.forEach((row, r) => {
-//           row.forEach((cell, c) => {
-//                if (cell === 0) emptyCells.push([r, c]);
-//            });
-//        });
-
-        // If there are no empty cells, exit the function
-//        if (emptyCells.length === 0) return;
-
-        // Choose a random empty cell
-//        const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-
-        // Assign a random value between 1 and 100 to the chosen cell
-//        board[r][c] = Math.floor(Math.random() * 100) + 1;
-
-        // Re-render the board to display the new value
-//        renderBoard();
-//    });
-//}
-
-// Initialize the function
-//addRandomValueTileOnClick();
 
 function checkForWinner() {
     for (let row of board) {
@@ -415,11 +387,57 @@ function showGameOverModal() {
 
     // Add an event listener to the "Try again" button
     document.getElementById('try-again-btn').addEventListener('click', function() {
+        // Update previous attempt with the current score
+        previousAttempt = score;
+        localStorage.setItem('4096-previous-attempt', previousAttempt);
+
         gameOverModal.hide(); // Close the modal
         initGame(); // Reinitialize the game
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve previous attempt from local storage
+    previousAttempt = localStorage.getItem('4096-previous-attempt') || 0;
+    updateScoreDisplay();
+});
+
+function handleGameOver() {
+    previousAttempt = score;
+    showGameOverModal();
+}
+
+        // function that adds a random value to a tile on the playing board for gameOver modal testing
+//function addRandomValueTileOnClick() {
+//    const addRandomValueButton = document.getElementById('add-random-value');
+
+//    addRandomValueButton.addEventListener('click', () => {
+//        const emptyCells = [];
+        
+       // Find all empty cells (cells with a value of 0)
+//        board.forEach((row, r) => {
+//           row.forEach((cell, c) => {
+//               if (cell === 0) emptyCells.push([r, c]);
+//            });
+//        });
+
+        // If there are no empty cells, exit the function
+//        if (emptyCells.length === 0) return;
+
+        // Choose a random empty cell
+//        const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+
+        // Assign a random value between 1 and 100 to the chosen cell
+//        board[r][c] = Math.floor(Math.random() * 100) + 1;
+
+        // Re-render the board to display the new value
+//        renderBoard();
+//    });
+//}
+
+        //Initialize random tile number generator for modal testing
+
+//addRandomValueTileOnClick();
 
 // Initialize the game
 initGame();

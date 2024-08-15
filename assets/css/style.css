@@ -139,7 +139,7 @@ body {
     left: 0; 
 }
 
-#previous-score, #high-score {
+#previous-attempt, #high-score {
     font-size: 18px;
     padding: 10px;
     text-align: center;
