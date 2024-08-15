@@ -95,9 +95,15 @@ function saveScores() {
 }
 
 // Function to create a tile element
-function createTile(value) {
+let tileId = 0;
+
+function createTile(value, row, col) {
     const tile = document.createElement('div');
     tile.className = 'tile';
+    tile.id = `tile-${tileId++}`; // Unique ID for each tile
+    tile.dataset.value = value;
+    tile.dataset.row = row; // Store row position
+    tile.dataset.col = col; // Store column position
     tile.textContent = value || '';
     tile.style.backgroundColor = getTileColor(value);
     return tile;
@@ -138,7 +144,21 @@ function renderBoard() {
     updateScoreDisplay();
     saveScores();
 }
+//defining animations for the tiles
+function updateTileAnimations(movement) {
+    document.querySelectorAll('.tile').forEach(tile => {
+        tile.classList.add(`move-${movement}`);
+        // Trigger reflow to restart animations
+        void tile.offsetWidth; // Forces a reflow
+        tile.classList.add('animated');
+    });
+}
 
+function removeTileAnimations() {
+    document.querySelectorAll('.tile').forEach(tile => {
+        tile.classList.remove('move-up', 'move-down', 'move-left', 'move-right', 'animated');
+    });
+}
 // Function to add a random tile to the board
 function addRandomTile() {
     const emptyCells = [];
@@ -180,10 +200,39 @@ function moveLeft() {
         if (JSON.stringify(newRow) !== JSON.stringify(row)) moved = true;
         board[r] = newRow;
     });
+
+    // Apply move direction for tiles
+    updateTileMoves('left');
     return moved;
 }
 
+function updateTileMoves(direction) {
+    document.querySelectorAll('.tile').forEach(tile => {
+        tile.dataset.move = direction;
+        // Trigger reflow to restart animations
+        tile.offsetHeight; // This forces a reflow
+        tile.classList.add('animated'); // Make sure CSS uses this class
+    });
+}
+
+
 // Function to move tiles right
+function moveUp() {
+    board = transpose(board);
+    const moved = moveLeft();
+    board = transpose(board);
+    updateTileAnimations('up');
+    return moved;
+}
+
+function moveDown() {
+    board = transpose(board);
+    const moved = moveRight();
+    board = transpose(board);
+    updateTileAnimations('down');
+    return moved;
+}
+
 function moveRight() {
     board.forEach((row, r) => {
         board[r] = row.reverse();
@@ -192,22 +241,7 @@ function moveRight() {
     board.forEach((row, r) => {
         board[r] = row.reverse();
     });
-    return moved;
-}
-
-// Function to move tiles up
-function moveUp() {
-    board = transpose(board);
-    const moved = moveLeft();
-    board = transpose(board);
-    return moved;
-}
-
-// Function to move tiles down
-function moveDown() {
-    board = transpose(board);
-    const moved = moveRight();
-    board = transpose(board);
+    updateTileAnimations('right');
     return moved;
 }
 
