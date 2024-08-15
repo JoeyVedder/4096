@@ -333,27 +333,27 @@ function triggerConfetti() {
 
 //function addRandomValueTileOnClick() {
 //    const addRandomValueButton = document.getElementById('add-random-value');
-//
+
 //    addRandomValueButton.addEventListener('click', () => {
 //        const emptyCells = [];
-//        
-        // Find all empty cells (cells with a value of 0)
+        
+       // Find all empty cells (cells with a value of 0)
 //        board.forEach((row, r) => {
 //           row.forEach((cell, c) => {
 //                if (cell === 0) emptyCells.push([r, c]);
 //            });
 //        });
-//
+
         // If there are no empty cells, exit the function
 //        if (emptyCells.length === 0) return;
-//
+
         // Choose a random empty cell
 //        const [r, c] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-//
+
         // Assign a random value between 1 and 100 to the chosen cell
 //        board[r][c] = Math.floor(Math.random() * 100) + 1;
-//
-//        // Re-render the board to display the new value
+
+        // Re-render the board to display the new value
 //        renderBoard();
 //    });
 //}
@@ -364,7 +364,11 @@ function triggerConfetti() {
 function checkForWinner() {
     for (let row of board) {
         if (row.includes(4096)) {
-            showWinnerModal(); // Show winner modal if 4096 is found
+            if (score > highScore) {
+                highScore = score; // Update high score
+                saveScores(); // Save high score to local storage
+            }
+            showWinnerModal(); // Show winner modal
             return true;
         }
     }
@@ -398,9 +402,12 @@ function checkForLoser() {
     }
 
     // No moves left and no empty cells, game over
+    previousAttempt = score; // Update previous attempt score
+    saveScores(); // Save previous attempt score to local storage
     showGameOverModal(); // Show game over modal
     return true;
 }
+
 function showGameOverModal() {
     console.log('Showing game over modal');
     var gameOverModal = new bootstrap.Modal(document.getElementById('gameOverModal'));
