@@ -42,9 +42,8 @@ The purposes of the game is to merge the tiles to form the number  4096. Initial
 8x8 Grid: The grid is larger compared to traditional 4x4 games. Therefore, it provides a distinctive challenge and demands more strategic planning.<br>
 Responsive Controls: The controls are smooth and responsive. So, it provides an enjoyable experience of game.<br>
 Local Storage: Players' high scores and previous game status are saved locally. This allows the players to pick up where they left off or start a new game.
- 
-### Usage
 
+### Usage
 
  Use your arrow keys to move the tiles. Up Arrow will move the tiles up, Down Arrow will move them down, Left Arrow will move the tiles left and Right Arrow key will shift the tiles to the right.
 

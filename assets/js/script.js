@@ -32,21 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const shapeToggleButton = document.getElementById('toggle-shape');
     const tiles = document.querySelectorAll('.game-container');
-    let isCircle = false; // Initial state
+    let isCircle = JSON.parse(localStorage.getItem('isCircle')) || false;
+
+    tiles.forEach(tile => {
+        if (isCircle) {
+            tile.classList.add('circle');
+            shapeToggleButton.textContent = '🔵';
+        } else {
+            tile.classList.add('square');
+            shapeToggleButton.textContent = '🟦';
+        }
+    });
 
     shapeToggleButton.addEventListener('click', () => {
+        isCircle = !isCircle; // Toggle the state
         tiles.forEach(tile => {
             if (isCircle) {
-                tile.classList.remove('circle');
-                tile.classList.add('square');
-                shapeToggleButton.textContent = '🟦'; // Square icon
-            } else {
                 tile.classList.remove('square');
                 tile.classList.add('circle');
-                shapeToggleButton.textContent = '🔵'; // Circle icon
+                shapeToggleButton.textContent = '🔵'; 
+            } else {
+                tile.classList.remove('circle');
+                tile.classList.add('square');
+                shapeToggleButton.textContent = '🟦'; 
             }
         });
-        isCircle = !isCircle; // Toggle the state
+        localStorage.setItem('isCircle', JSON.stringify(isCircle)); // Save the shape state to localStorage
     });
 });
 
@@ -407,7 +418,7 @@ function handleGameOver() {
     showGameOverModal();
 }
 
-        // function that adds a random value to a tile on the playing board for gameOver modal testing
+// function that adds a random value to a tile on the playing board for gameOver modal testing
 //function addRandomValueTileOnClick() {
 //    const addRandomValueButton = document.getElementById('add-random-value');
 
