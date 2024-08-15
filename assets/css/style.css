@@ -191,6 +191,15 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    #score {
+    text-align: center;
+    padding: 0px;
+    margin: 20px;
+    margin-top: 100px; 
+    width: 400px;
+    }
+
     .game-container {
         grid-template-columns: repeat(6, 60px);
         grid-template-rows: repeat(6, 60px);
@@ -223,7 +232,7 @@ body {
         padding: 10px;
         font-size: 14px; 
     }
-
+ 
     #toggle-shape {
         left: 8px;
         height: 29px;
@@ -242,10 +251,13 @@ body {
     }
 
     #previous-score, #high-score {
-        font-size: 12px; 
+        font-size: 18px; 
         padding-top: 5px;
     }
-
+    .intro {
+        margin: 0px;
+        height: 40px;
+    }
     /* Prevent scrolling on swipe */
     .game-container {
         touch-action: pan-x pan-y; 
