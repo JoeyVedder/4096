@@ -27,7 +27,7 @@ Tile animation
 ### Description
 
 
- **4096** is a very captivating puzzle game demanding players to merge tiles with the same number. The purpose is to build a large number with the target to gain **4096**. With the movement of arrow keys players have to tactically merge same numbers in a 8x8 grid to achieve the desired high number and making space for new tiles. **4096** is a tile merging game that offers users hours of relaxation and mental workout.
+ **4096** is a very captivating puzzle game demanding players to merge tiles with the same number. The purpose is to build a large number with the target to gain **4096**. With the movement of arrow keys players have to tactically merge same numbers in a 6x6 grid to achieve the desired high number and making space for new tiles. **4096** is a tile merging game that offers users hours of relaxation and mental workout.
 
 
 ### Objective
@@ -39,7 +39,7 @@ The purposes of the game is to merge the tiles to form the number  4096. Initial
  No installation required.
 
 ###  Features
-8x8 Grid: The grid is larger compared to traditional 4x4 games. Therefore, it provides a distinctive challenge and demands more strategic planning.<br>
+6x6 Grid: The grid is larger compared to traditional 4x4 games. Therefore, it provides a distinctive challenge and demands more strategic planning.<br>
 Responsive Controls: The controls are smooth and responsive. So, it provides an enjoyable experience of game.<br>
 Local Storage: Players' high scores and previous game status are saved locally. This allows the players to pick up where they left off or start a new game.
 
@@ -51,7 +51,7 @@ Local Storage: Players' high scores and previous game status are saved locally. 
 ### Mechanism
 
 
-__Starting the Game:__ The game starts with two tiles placed randomly on the  8x8 grid. These tiles can have a value of 2,4,8 or 16.<br> <br>
+__Starting the Game:__ The game starts with two tiles placed randomly on the  6x6 grid. These tiles can have a value of 2,4,8 or 16.<br> <br>
 __Moving the Tiles:__ All the tiles on the grid will slide in the direction of the arrow key movement until they hit the edge of the grid or another tile.<br><br>
 __Merging Tiles:__ If two tiles of same value touch each other while moving, they will merge into one tile with doubled value. As you play with the up, down, right and left keys the tiles will change positions and color.  As you play the tiles will display random numbers. You can merge the tiles with the same number into one when they touch. For example, if a tile with number 8 touches another tile with number 8 on it, the two 8s will merge to 16 and so on. There are two score boards for **Current Score** and **Highest Score**. Current score displays your current total while the Highest Score shows the highest total you achieved in your total number of games.<br><br>
 **Adding New Tiles:** A new tile appears on the grid at a random empty spot after each move. It can have a value of 2,4,8, or 16, more common to have with value 2 and 4.<br><br> 
