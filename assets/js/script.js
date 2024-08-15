@@ -361,10 +361,19 @@ function checkForWinner() {
 function showWinnerModal() {
     console.log('Showing winner modal');
     var winnerModal = new bootstrap.Modal(document.querySelector('#winnerModal'), {
-        backdrop: false
+        backdrop: 'static'  // Disable closing the modal by clicking outside
     });
     winnerModal.show();
+
+    const winnerPlayAgainButton = document.getElementById('winner-play-again-btn');
+    winnerPlayAgainButton.addEventListener('click', function() {
+        winnerModal.hide();  // Close the modal
+        initGame();  // Reinitialize the game
+        const resetButton = document.getElementById('reset-game');
+        resetButton.textContent = 'Reset Game';  // Reset button text to "Reset Game"
+    });
 }
+
 function checkForLoser() {
     // Check if there are any empty cells
     for (let row of board) {
