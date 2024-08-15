@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isCircle) {
                 tile.classList.remove('circle');
                 tile.classList.add('square');
-                shapeToggleButton.textContent = '🔲'; // Square icon
+                shapeToggleButton.textContent = '🟦'; // Square icon
             } else {
                 tile.classList.remove('square');
                 tile.classList.add('circle');

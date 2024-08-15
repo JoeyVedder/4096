@@ -4,7 +4,7 @@
 }
 
 .square {
-    --radius: 50px;
+    --radius: 5px;
 }
 
 .theme-default {
@@ -17,7 +17,7 @@
     --score-border-color: linear-gradient(to right, yellow, red); /* Default theme border color */
     --link-color: white;
     --link-hover-color: #ffd700;
-    --link-visited-color: purple;
+    --link-visited-color: yellow;
 }
 
 .theme-light {
@@ -90,7 +90,7 @@ body {
     justify-content: center;
     font-size: 24px;
     border-radius: var(--radius, 10px);
-    box-shadow: 0 0 8px var(--tile-shadow);
+    box-shadow: 0 0 15px var(--tile-shadow);
     transition: border-radius 0.5s ease;
     transition-property: transform 0.5s ease, background-color 0.3s ease, opacity 0.3s ease;
 }
@@ -108,6 +108,8 @@ body {
 }
 
 #toggle-shape {
+    padding: 1px;
+    background-color: transparent;
     position: fixed;
     top: 10px; 
     right: 70px; 
@@ -116,6 +118,8 @@ body {
 
 /* theme toggle button */
 #toggle-theme {
+    padding: 1px;
+    background-color: transparent;
     position: fixed;
     top: 10px; 
     right: 10px; 
@@ -139,7 +143,7 @@ body {
     font-size: 18px;
     padding: 10px;
     text-align: center;
-    border: 6px solid;
+    border: 3px solid;
     border-image-slice: 1; /* Makes the color spread out evenly */
     border-image-source: var(--score-border-color); /* Use the theme's border color */
     box-sizing: border-box;
@@ -157,7 +161,7 @@ body {
     text-align: center; 
     z-index: 10;
     font-size: 40px; 
-    margin: 0; 
+    margin-top: 75px; 
 }
 
 /* Footer styles */
@@ -186,14 +190,26 @@ body {
     color: var(--link-visited-color);
 }
 
-
-/* Mobile responsiveness */
-@media screen and (min-width: 768px) {
+@media (max-width: 768px) {
     .game-container {
         grid-template-columns: repeat(6, 60px);
         grid-template-rows: repeat(6, 60px);
         gap: 5px;
-        margin: 10px; /* Reduced margin for mobile */
+        margin: 10px; 
+    }
+
+    .toggle-container {
+        flex-direction: row;
+        justify-content: center;
+        top: 5px;
+        right: 5px;
+        padding: 5px 10px;
+    }
+    
+    .grid-container {
+        width: 100%; 
+        padding: 5px; 
+        margin: 0;
     }
 
     .tile {
@@ -202,18 +218,36 @@ body {
         font-size: 18px;
     }
 
+    .info {
+        margin: 10px;
+        padding: 10px;
+        font-size: 14px; 
+    }
+
+    #toggle-shape {
+        left: 8px;
+        height: 29px;
+        width: 50px;
+    }
+    
+    /* theme toggle button */
+    #toggle-theme {
+        right: 8px;
+        height: 29px;
+        width: 50px;    
+    }
+
     #score {
         font-size: 30px;
     }
 
-    .info {
-        margin: 10px;
-        padding: 10px;
-        font-size: 16px;
+    #previous-score, #high-score {
+        font-size: 12px; 
+        padding-top: 5px;
     }
-}
 
-/* Prevent scrolling on swipe */
-.game-container {
-    touch-action: pan-x pan-y; /* Allow horizontal swiping only */
+    /* Prevent scrolling on swipe */
+    .game-container {
+        touch-action: pan-x pan-y; 
+    }
 }
